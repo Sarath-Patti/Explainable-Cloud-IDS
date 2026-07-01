@@ -1,0 +1,31 @@
+# Virtual Environment
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment Variables
+.env
+
+# Models
+*.pkl
+*.joblib
+
+# Ignore raw datasets
+data/raw/*.csv
+
+# Ignore macOS files inside data
+data/.DS_Store
+
+# Processed datasets
+data/processed/*.csv
