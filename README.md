@@ -28,19 +28,19 @@ The project is being developed as part of a Summer Research Internship.
 
 ## Dataset
 
-**Dataset:** CIC-IDS2017
+The raw CIC-IDS2017 dataset is **not included** in this repository because of its large size.
 
-The CIC-IDS2017 dataset contains modern network traffic including both normal and malicious activities such as:
+Download it from:
 
-- DDoS
-- Port Scan
-- Brute Force
-- Web Attacks
-- Botnet
-- Infiltration
+https://www.unb.ca/cic/datasets/ids-2017.html
 
-Current implementation uses the **Friday Working Hours - Afternoon DDoS** dataset.
+After downloading, place the CSV files inside:
 
+```
+data/raw/
+```
+
+The preprocessing pipeline will generate the cleaned dataset automatically.
 ---
 
 ## Project Structure
