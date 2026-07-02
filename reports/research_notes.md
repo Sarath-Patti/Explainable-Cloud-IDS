@@ -130,3 +130,39 @@ Perform Exploratory Data Analysis (EDA).
 ## Conclusion
 
 Initial EDA confirms that the cleaned dataset is suitable for further analysis. Additional feature distribution and correlation analysis will be performed before feature engineering.
+
+## Feature Distribution Analysis
+
+Date: 02 July 2026
+
+### Observations
+
+- Histograms were generated for six important network traffic features.
+- Most numerical features show right-skewed distributions.
+- Several features contain extreme values, indicating potential outliers.
+- The distributions suggest that feature scaling may be beneficial before model training.
+- Outlier analysis will be performed to determine whether these values represent genuine attack behavior or noise.
+
+## Outlier Analysis
+
+Date: 02 July 2026
+
+### Observations
+
+- Boxplots were generated for six important network traffic features.
+- Most features contain a large number of outliers.
+- The distributions are highly skewed, which is expected in real network traffic.
+- The observed outliers may represent attack behaviour rather than data errors.
+- Therefore, outliers will be retained for subsequent machine learning experiments.
+
+## Correlation Analysis
+
+Date: 02 July 2026
+
+### Observations
+
+- Correlation analysis identified 87 highly correlated feature pairs.
+- Several feature pairs showed perfect correlation (correlation = 1.0), indicating redundant information.
+- Strong correlations were observed among packet count, packet length, subflow, and timing features.
+- Removing redundant features can reduce model complexity without significant information loss.
+- Correlation analysis will be used as the first stage of feature reduction before SHAP-based feature selection.
