@@ -166,3 +166,35 @@ Date: 02 July 2026
 - Strong correlations were observed among packet count, packet length, subflow, and timing features.
 - Removing redundant features can reduce model complexity without significant information loss.
 - Correlation analysis will be used as the first stage of feature reduction before SHAP-based feature selection.
+
+## Correlation-Based Feature Selection
+
+Date: 03 July 2026
+
+### Results
+
+- Original Features: 78
+- Removed Features: 35
+- Remaining Features: 43
+
+### Observation
+
+Correlation analysis successfully removed redundant network-flow features using a threshold of 0.90.
+
+Approximately 45% of the original feature space was eliminated while preserving representative features.
+
+This reduced feature set will be used for subsequent machine learning experiments.
+
+## Feature Scaling
+
+Date: 03 July 2026
+
+### Technique
+
+StandardScaler
+
+### Observation
+
+The reduced feature set was standardized to zero mean and unit variance.
+
+Although tree-based algorithms such as Random Forest and XGBoost do not require feature scaling, a standardized dataset was prepared to facilitate future experiments with other machine learning algorithms.
