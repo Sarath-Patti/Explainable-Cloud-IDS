@@ -3,18 +3,26 @@ from pathlib import Path
 
 
 def load_dataset(file_name):
-    """
-    Load a dataset from the data/raw folder.
-
-    Parameters:
-        file_name (str): Name of the CSV file.
-
-    Returns:
-        pandas.DataFrame
-    """
 
     dataset_path = Path("data/raw") / file_name
 
-    df = pd.read_csv(dataset_path)
+    df = pd.read_csv(
+        dataset_path,
+        low_memory=False
+    )
+
+    df.columns = df.columns.str.strip()
+
+    numeric_columns = [
+        "Flow Bytes/s",
+        "Flow Packets/s"
+    ]
+
+    for column in numeric_columns:
+        if column in df.columns:
+            df[column] = pd.to_numeric(
+                df[column],
+                errors="coerce"
+            )
 
     return df

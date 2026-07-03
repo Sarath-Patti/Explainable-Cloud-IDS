@@ -1,278 +1,265 @@
-# An Explainable and Efficient Machine Learning Framework for Cloud Intrusion Detection using SHAP-Guided Feature Selection
+# Explainable Cloud Intrusion Detection System
 
-## Overview
+An Explainable Artificial Intelligence (XAI) based Intrusion Detection System for cloud environments using Machine Learning and SHAP explainability.
 
-Cloud computing has become the backbone of modern digital infrastructure, making cloud environments an attractive target for cyber attacks such as Distributed Denial of Service (DDoS), Port Scanning, Botnets, and Web-based attacks. Intrusion Detection Systems (IDS) play a vital role in protecting these environments by identifying malicious network traffic.
-
-Although Machine Learning (ML) based IDS models achieve high detection accuracy, they often function as black-box systems, making it difficult for security analysts to understand the reasoning behind their predictions.
-
-This project proposes an **Explainable and Efficient Machine Learning Framework** for cloud intrusion detection using the **CIC-IDS2017 dataset**. The framework integrates **SHAP (SHapley Additive exPlanations)** to improve model interpretability and introduces **SHAP-guided feature selection** to reduce redundant features while maintaining high detection performance.
+This project is being developed as a Summer Research Project at the Department of Computer Science and Engineering, National Institute of Technology Rourkela.
 
 ---
 
-# Research Problem
+## Project Motivation
 
-Traditional intrusion detection systems either:
+Cloud computing has become the backbone of modern applications, making it a major target for cyber attacks such as DDoS, Port Scans, and Web Attacks.
 
-- Depend on manually designed signatures and fail to detect unknown attacks.
-- Achieve high detection accuracy using machine learning but lack interpretability.
-- Utilize all available network-flow features, increasing computational complexity.
+Although Machine Learning based Intrusion Detection Systems achieve high detection accuracy, they often behave as **black-box models**, making it difficult for security analysts to understand why a particular network flow is classified as malicious.
 
-The objective of this research is to design an intrusion detection framework that is:
+This project addresses that limitation by integrating **Explainable Artificial Intelligence (XAI)** into the intrusion detection pipeline using **SHAP (SHapley Additive exPlanations)**.
 
-- Accurate
-- Explainable
-- Computationally efficient
-- Suitable for real-world cloud environments
+The goal is to develop an IDS that is not only accurate but also transparent and trustworthy.
 
 ---
 
 # Research Objectives
 
-- Study the CIC-IDS2017 intrusion detection dataset.
-- Build a reproducible data preprocessing pipeline.
-- Perform Exploratory Data Analysis (EDA).
-- Train Random Forest and XGBoost models.
-- Explain model predictions using SHAP.
-- Reduce redundant features using correlation analysis.
-- Develop an efficient IDS through SHAP-guided feature selection.
+- Build a machine learning based Cloud IDS
+- Perform comprehensive data preprocessing
+- Analyze network traffic characteristics
+- Train high-performance ML models
+- Explain predictions using SHAP
+- Identify the most influential network traffic features
+- Develop a lightweight and explainable intrusion detection framework
 
 ---
 
-# Research Contribution
+# Proposed Research Extension
 
-The primary contribution of this work is a **two-stage feature selection strategy** for cloud intrusion detection.
+Most existing IDS research focuses primarily on improving classification accuracy.
 
-### Stage 1
+This project extends traditional IDS by introducing:
 
-Correlation Analysis
-
-- Identify highly correlated features.
-- Remove redundant network-flow features.
-
-### Stage 2
-
-SHAP-based Feature Selection
-
-- Train baseline machine learning models.
-- Compute SHAP values.
-- Rank features according to importance.
-- Select Top-K features.
-- Retrain the model using the reduced feature set.
-
-The proposed framework aims to improve:
-
-- Model interpretability
-- Training efficiency
-- Computational cost
-- Feature dimensionality
-- Trustworthiness of intrusion detection decisions
+- Explainable AI using SHAP
+- Global and local prediction explanations
+- SHAP-guided feature selection
+- Lightweight IDS using Top-K important features
+- Comparative performance analysis between full-feature and reduced-feature models
 
 ---
 
 # Dataset
 
-Dataset:
-CIC-IDS2017
+Dataset Used
 
-Current Dataset Used:
+**CIC-IDS2017**
 
-Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+Working Dataset
 
-Dataset Statistics
+- Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
 
-- Original Samples: 225,745
-- Clean Samples: 223,082
-- Features: 79
-- Target Classes:
-  - BENIGN
-  - DDoS
+Dataset contains
+
+- Benign traffic
+- DDoS attacks
 
 ---
 
-# Project Workflow
+# Project Structure
 
-```
-                CIC-IDS2017 Dataset
-                         │
-                         ▼
-                Data Validation
-                         │
-                         ▼
-                 Data Cleaning
-                         │
-                         ▼
-          Exploratory Data Analysis
-                         │
-                         ▼
-      Correlation-Based Feature Selection
-                         │
-                         ▼
-      Random Forest / XGBoost Models
-                         │
-                         ▼
-              SHAP Explainability
-                         │
-                         ▼
-          SHAP Feature Ranking
-                         │
-                         ▼
-          Top-K Feature Selection
-                         │
-                         ▼
-          Performance Comparison
-                         │
-                         ▼
-        Explainable Cloud IDS
-```
-
----
-
-# Repository Structure
-
-```
+```text
 Explainable-Cloud-IDS/
 
-│
-
 ├── data/
-
 │   ├── raw/
-
 │   └── processed/
-
 │
-
+├── models/
+│   ├── random_forest_model.pkl
+│   └── xgboost_model.pkl
+│
 ├── reports/
-
+│   ├── research_notes.md
+│   ├── class_distribution.png
+│   ├── random_forest_metrics.csv
+│   ├── random_forest_confusion_matrix.png
+│   ├── random_forest_feature_importance.csv
+│   ├── random_forest_feature_importance.png
+│   ├── xgboost_metrics.csv
+│   ├── xgboost_confusion_matrix.png
+│   ├── xgboost_feature_importance.csv
+│   └── xgboost_feature_importance.png
 │
-
 ├── src/
-
 │   ├── dataset_loader.py
-
-│   ├── explorer.py
-
 │   ├── validation.py
-
-│   ├── preprocessing.py
-
 │   ├── cleaning.py
-
 │   ├── eda.py
-
 │   ├── feature_distribution.py
-
 │   ├── outlier_analysis.py
-
 │   ├── correlation_analysis.py
-
+│   ├── feature_selection.py
+│   ├── scaling.py
+│   ├── data_split.py
+│   ├── random_forest.py
+│   └── xgboost_model.py
 │
-
-├── CHANGELOG.md
-
 ├── README.md
-
+├── CHANGELOG.md
 └── requirements.txt
 ```
 
 ---
 
-# Project Progress
+# Research Workflow
 
-## Phase 1 — Project Foundation
-
-- [x] Project Setup
-- [x] GitHub Repository
-- [x] Dataset Loading
-- [x] Dataset Exploration
-- [x] Data Validation
-- [x] Data Cleaning
+```text
+Raw Dataset
+      │
+      ▼
+Dataset Validation
+      │
+      ▼
+Data Cleaning
+      │
+      ▼
+Exploratory Data Analysis
+      │
+      ▼
+Correlation Analysis
+      │
+      ▼
+Feature Selection
+      │
+      ▼
+Feature Scaling
+      │
+      ▼
+Train-Test Split
+      │
+      ▼
+Random Forest
+      │
+      ▼
+XGBoost
+      │
+      ▼
+SHAP Explainability
+      │
+      ▼
+Top-K Feature Selection
+      │
+      ▼
+Performance Comparison
+```
 
 ---
 
-## Phase 2 — Advanced Exploratory Data Analysis
+# Completed Work
 
-- [x] Summary Statistics
-- [x] Class Distribution
-- [x] Feature Distribution Analysis
-- [x] Outlier Analysis
-- [x] Correlation Analysis
+## Phase 1 — Project Foundation
+
+- Project setup
+- GitHub repository
+- Dataset loading
+- Dataset validation
+- Data cleaning
+
+---
+
+## Phase 2 — Exploratory Data Analysis
+
+- Summary statistics
+- Dataset exploration
+- Class distribution
+- Feature distributions
+- Outlier analysis
+- Correlation analysis
 
 ---
 
 ## Phase 3 — Feature Engineering
 
-- [ ] Correlation-Based Feature Selection
-- [ ] Feature Scaling
-- [ ] Train/Test Split
+- Correlation-based feature selection
+- 45% feature reduction
+- Feature scaling
+- Train-test split
 
 ---
 
 ## Phase 4 — Machine Learning Models
 
-- [ ] Random Forest
-- [ ] XGBoost
-- [ ] Model Evaluation
+### Random Forest
+
+Accuracy
+
+99.99%
+
+Generated
+
+- Trained model
+- Evaluation metrics
+- Confusion matrix
+- Feature importance report
+- Feature importance visualization
 
 ---
 
-## Phase 5 — Explainable AI
+### XGBoost
 
-- [ ] SHAP Explainability
-- [ ] Global Feature Importance
-- [ ] Local Explanation
-- [ ] SHAP Feature Ranking
-- [ ] Top-K Feature Selection
+Accuracy
 
----
+100.00%
 
-## Phase 6 — Performance Analysis
+Generated
 
-- [ ] Accuracy Comparison
-- [ ] Precision
-- [ ] Recall
-- [ ] F1 Score
-- [ ] ROC-AUC
-- [ ] Training Time Comparison
+- Trained model
+- Evaluation metrics
+- Confusion matrix
+- Feature importance report
+- Feature importance visualization
 
 ---
 
-# Current Research Findings
+# Current Results
 
-## Data Validation
-
-- Missing Values: 4
-- Infinite Values: 64
-- Duplicate Rows: 2633
-
----
-
-## Data Cleaning
-
-- Infinite values replaced.
-- Missing records removed.
-- Duplicate records removed.
-
-Final Dataset
-
-223,082 network-flow records.
+| Model | Accuracy |
+|--------|----------|
+| Random Forest | 99.99% |
+| XGBoost | 100.00% |
 
 ---
 
-## Exploratory Data Analysis
+# Current Research Progress
 
-Completed
+| Phase | Status |
+|--------|--------|
+| Dataset Validation | ✅ |
+| Data Cleaning | ✅ |
+| Exploratory Data Analysis | ✅ |
+| Feature Engineering | ✅ |
+| Random Forest | ✅ |
+| XGBoost | ✅ |
+| SHAP Explainability | 🔄 In Progress |
+| Feature Optimization | ⏳ |
+| Performance Comparison | ⏳ |
+| Final Report | ⏳ |
 
-- Summary Statistics
-- Class Distribution
-- Feature Distributions
-- Outlier Analysis
-- Correlation Analysis
+Overall Project Progress
 
-Key Observation
+**Approximately 75% Completed**
 
-Correlation analysis identified **87 highly correlated feature pairs**, indicating significant feature redundancy. These findings motivate the proposed correlation-based feature reduction prior to SHAP-guided feature selection.
+---
+
+# Upcoming Work
+
+- SHAP Explainability
+- SHAP Summary Plot
+- SHAP Waterfall Plot
+- SHAP Feature Importance
+- Top-30 Feature Selection
+- Top-20 Feature Selection
+- Top-10 Feature Selection
+- Retraining ML Models
+- Comparative Performance Analysis
+- Final Report
+- Research Presentation
 
 ---
 
@@ -287,28 +274,28 @@ Libraries
 - Pandas
 - NumPy
 - Matplotlib
-- Seaborn
 - Scikit-learn
 - XGBoost
 - SHAP
+- Joblib
 
-Development Tools
+Tools
 
-- VS Code
 - Git
 - GitHub
+- Jupyter Notebook
+- Visual Studio Code
 
 ---
 
-# Future Work
+# Future Scope
 
-- Correlation-based feature engineering.
-- Train Random Forest and XGBoost models.
-- Perform SHAP explainability analysis.
-- Rank features using SHAP values.
-- Develop reduced-feature IDS models.
-- Compare performance across multiple feature subsets.
-- Build a complete Explainable Cloud IDS framework.
+- Multi-class intrusion detection
+- Real-time cloud traffic monitoring
+- Deep learning based IDS
+- Hybrid Explainable AI models
+- Deployment using Flask/FastAPI
+- Cloud-native intrusion detection framework
 
 ---
 
@@ -316,13 +303,11 @@ Development Tools
 
 **Patti Sarath**
 
-M.Tech Computer Science and Engineering
+M.Tech, Computer Science and Engineering
 
 National Institute of Technology Rourkela
 
-Summer Research Project
-
-2026
+Summer Research Project 2026
 
 ---
 

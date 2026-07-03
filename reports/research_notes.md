@@ -1,200 +1,422 @@
-# Summer Project Research Journal
+# Explainable Cloud Intrusion Detection System
+## Summer Research Progress Notes
 
-**Project Title:**
-Explainable Machine Learning Framework for Cloud Intrusion Detection using CIC-IDS2017
-
----
-
-# Day 1
-
-## Objective
-Set up the project environment and perform initial dataset exploration.
-
-## Tasks Completed
-
-- Created the project structure.
-- Set up a Python virtual environment.
-- Installed required Python libraries.
-- Downloaded the CIC-IDS2017 dataset.
-- Implemented a reusable dataset loader.
-- Explored the dataset structure.
-- Identified leading spaces in feature names.
-- Implemented column name cleaning.
-
-## Observations
-
-- Dataset contains 225,745 network flow records.
-- Dataset contains 79 columns.
-- All column names contained leading spaces.
-- Cleaning column names simplifies future preprocessing.
-
-## Conclusion
-
-Successfully prepared the project environment and completed the initial dataset exploration. The dataset is ready for validation.
+**Student:** Patti Sarath  
+**Institute:** National Institute of Technology Rourkela  
+**Department:** Computer Science and Engineering
 
 ---
 
-# Day 2
+# Research Title
 
-## Objective
-
-Validate and clean the dataset before model development.
-
-## Tasks Completed
-
-- Performed missing value analysis.
-- Performed duplicate row analysis.
-- Checked label distribution.
-- Detected infinite values.
-- Built a reusable data cleaning pipeline.
-- Saved the cleaned dataset.
-
-## Validation Results
-
-Original Dataset
-
-Rows : 225745
-
-Columns : 79
-
-Missing Values
-
-Flow Bytes/s : 4
-
-Duplicate Rows
-
-2633
-
-Infinite Values
-
-Flow Bytes/s : 30
-
-Flow Packets/s : 34
-
-Total Infinite Values : 64
-
-Label Distribution
-
-DDoS : 128027
-
-BENIGN : 97718
-
-Cleaning Results
-
-Original Shape : (225745,79)
-
-↓
-
-Final Shape : (223082,79)
-
-Cleaning Operations
-
-- Replaced 64 infinite values with NaN.
-- Removed rows containing missing values.
-- Removed duplicate rows.
-- Saved cleaned dataset to data/processed/.
-
-## Research Observations
-
-- The dataset contains only a very small number of missing values.
-- Duplicate records account for approximately 1.17% of the dataset.
-- Infinite values occur mainly in Flow Bytes/s and Flow Packets/s.
-- The dataset is reasonably balanced between DDoS and BENIGN traffic.
-
-## Conclusion
-
-A clean dataset was successfully generated and will be used for all future experiments.
+Explainable Cloud Intrusion Detection System using Machine Learning and SHAP-based Explainable AI
 
 ---
 
-# Day 3
+# Research Objective
 
-## Objective
+Develop an intrusion detection framework for cloud environments that not only achieves high detection accuracy but also provides interpretable explanations for every prediction using Explainable Artificial Intelligence (XAI).
 
-Perform Exploratory Data Analysis (EDA).
+The proposed framework aims to improve the trustworthiness of intrusion detection systems by identifying the most influential network-flow features responsible for attack detection.
 
-## Tasks Completed
+---
 
-- Loaded the cleaned dataset.
-- Generated summary statistics.
-- Created the class distribution visualization.
+# Current Research Progress
 
-## Observations
+## Phase 1 – Project Foundation ✅
 
-- Cleaned dataset contains 223,082 samples.
-- Flow Duration has a minimum value of -1, indicating a possible invalid record.
-- Destination Port is predominantly 80, suggesting most traffic targets HTTP services.
-- Features such as Idle Max exhibit a wide range, indicating possible outliers.
-- Generated and saved the first visualization (Class Distribution).
+### Completed
 
-## Conclusion
+- Project setup
+- GitHub repository creation
+- Project documentation
+- Dataset loading module
+- Dataset exploration
+- Data validation
+- Data cleaning
 
-Initial EDA confirms that the cleaned dataset is suitable for further analysis. Additional feature distribution and correlation analysis will be performed before feature engineering.
+### Dataset
 
-## Feature Distribution Analysis
+Dataset Used:
+- CIC-IDS2017
 
-Date: 02 July 2026
+Working Dataset:
+- Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
 
-### Observations
+---
 
-- Histograms were generated for six important network traffic features.
-- Most numerical features show right-skewed distributions.
-- Several features contain extreme values, indicating potential outliers.
-- The distributions suggest that feature scaling may be beneficial before model training.
-- Outlier analysis will be performed to determine whether these values represent genuine attack behavior or noise.
+## Data Validation
+
+Initial Samples:
+225,745
+
+Issues Identified
+
+- Missing values
+- Infinite values
+- Duplicate records
+- Mixed data types
+
+---
+
+## Data Cleaning Results
+
+| Item | Count |
+|------|-------:|
+| Missing Values Removed | 4 |
+| Infinite Values Removed | 64 |
+| Duplicate Rows Removed | 2,633 |
+| Final Samples | 223,082 |
+
+Observation
+
+The dataset is now free from invalid entries and suitable for machine learning experiments.
+
+---
+
+# Phase 2 – Exploratory Data Analysis ✅
+
+Completed
+
+- Summary statistics
+- Dataset exploration
+- Class distribution
+- Feature distribution
+- Outlier analysis
+- Correlation analysis
+
+---
+
+## Summary Statistics
+
+Performed statistical analysis including
+
+- Mean
+- Standard Deviation
+- Minimum
+- Maximum
+- Quartiles
+
+Purpose
+
+Understand the behaviour of network traffic features.
+
+---
+
+## Class Distribution
+
+Classes
+
+- BENIGN
+- DDoS
+
+Observation
+
+The selected subset contains a balanced distribution suitable for binary classification.
+
+---
+
+## Feature Distribution
+
+Visualized important network-flow features.
+
+Generated histograms for numerical attributes.
+
+Purpose
+
+Understand feature behaviour before model development.
+
+---
 
 ## Outlier Analysis
 
-Date: 02 July 2026
+Detected extreme values using
 
-### Observations
+- Boxplots
+- Distribution plots
 
-- Boxplots were generated for six important network traffic features.
-- Most features contain a large number of outliers.
-- The distributions are highly skewed, which is expected in real network traffic.
-- The observed outliers may represent attack behaviour rather than data errors.
-- Therefore, outliers will be retained for subsequent machine learning experiments.
+Observation
+
+Large variations exist in several traffic features, which is expected in real-world network traffic.
+
+---
 
 ## Correlation Analysis
 
-Date: 02 July 2026
+Performed Pearson Correlation Analysis.
 
-### Observations
+Threshold Used
 
-- Correlation analysis identified 87 highly correlated feature pairs.
-- Several feature pairs showed perfect correlation (correlation = 1.0), indicating redundant information.
-- Strong correlations were observed among packet count, packet length, subflow, and timing features.
-- Removing redundant features can reduce model complexity without significant information loss.
-- Correlation analysis will be used as the first stage of feature reduction before SHAP-based feature selection.
+0.90
 
-## Correlation-Based Feature Selection
+Results
 
-Date: 03 July 2026
+Original Features : 78
 
-### Results
+Highly Correlated Features Removed : 35
 
-- Original Features: 78
-- Removed Features: 35
-- Remaining Features: 43
+Remaining Features : 43
 
-### Observation
+Feature Reduction
 
-Correlation analysis successfully removed redundant network-flow features using a threshold of 0.90.
+Approximately 45%
 
-Approximately 45% of the original feature space was eliminated while preserving representative features.
+Observation
 
-This reduced feature set will be used for subsequent machine learning experiments.
+Removing redundant features reduces dimensionality while preserving most of the useful information.
+
+---
+
+# Phase 3 – Feature Engineering ✅
+
+Completed
+
+- Correlation-based Feature Selection
+- Feature Scaling
+- Train-Test Split
+
+---
 
 ## Feature Scaling
 
-Date: 03 July 2026
-
-### Technique
+Technique
 
 StandardScaler
 
-### Observation
+Purpose
 
-The reduced feature set was standardized to zero mean and unit variance.
+Prepare standardized datasets for future experiments and improve compatibility with multiple machine learning algorithms.
 
-Although tree-based algorithms such as Random Forest and XGBoost do not require feature scaling, a standardized dataset was prepared to facilitate future experiments with other machine learning algorithms.
+---
+
+## Train-Test Split
+
+Training Samples
+
+178,465
+
+Testing Samples
+
+44,617
+
+Training Features
+
+43
+
+Testing Features
+
+43
+
+Random State
+
+42
+
+Train-Test Ratio
+
+80 : 20
+
+---
+
+# Phase 4 – Machine Learning Models ✅
+
+## Random Forest
+
+Status
+
+Completed
+
+Model Parameters
+
+- RandomForestClassifier
+- Number of Trees : 100
+- Random State : 42
+
+Performance
+
+| Metric | Value |
+|---------|------:|
+| Accuracy | 99.99% |
+| Precision | 99.99% |
+| Recall | 99.99% |
+| F1 Score | 99.99% |
+
+Confusion Matrix
+
+```
+[[19011     3]
+ [    2 25601]]
+```
+
+Observation
+
+Random Forest produced excellent classification performance with only five misclassified instances.
+
+---
+
+## Random Forest Feature Importance
+
+Generated
+
+- Feature Importance CSV
+- Feature Importance Plot
+
+Top Important Features
+
+1. Fwd Packet Length Max
+2. Init_Win_bytes_forward
+3. Total Length of Fwd Packets
+4. Total Fwd Packets
+5. act_data_pkt_fwd
+
+---
+
+## XGBoost
+
+Status
+
+Completed
+
+Model Parameters
+
+- XGBClassifier
+- Estimators : 100
+- Max Depth : 6
+- Learning Rate : 0.1
+
+Performance
+
+| Metric | Value |
+|---------|------:|
+| Accuracy | 100.00% |
+| Precision | 100.00% |
+| Recall | 100.00% |
+| F1 Score | 100.00% |
+
+Confusion Matrix
+
+```
+[[19014     0]
+ [    1 25602]]
+```
+
+Observation
+
+XGBoost slightly outperformed Random Forest by reducing the number of misclassified samples to only one.
+
+---
+
+# Research Extension
+
+Unlike traditional IDS implementations that focus only on maximizing classification accuracy, this research proposes an Explainable Intrusion Detection Framework.
+
+The proposed extension integrates Explainable Artificial Intelligence using SHAP to provide transparent explanations for every prediction.
+
+The explainability framework will also be used to identify the most influential features and construct a lightweight intrusion detection model using only the most informative network-flow features.
+
+---
+
+# Work Completed So Far
+
+✅ Dataset Validation
+
+✅ Data Cleaning
+
+✅ Exploratory Data Analysis
+
+✅ Feature Distribution Analysis
+
+✅ Outlier Detection
+
+✅ Correlation Analysis
+
+✅ Feature Selection
+
+✅ Feature Scaling
+
+✅ Train-Test Split
+
+✅ Random Forest
+
+✅ Random Forest Feature Importance
+
+✅ XGBoost
+
+---
+
+# Next Research Tasks
+
+⬜ SHAP Explainability
+
+⬜ SHAP Summary Plot
+
+⬜ SHAP Waterfall Plot
+
+⬜ SHAP Feature Importance
+
+⬜ Top-30 Feature Selection
+
+⬜ Top-20 Feature Selection
+
+⬜ Top-10 Feature Selection
+
+⬜ Retrain Random Forest
+
+⬜ Retrain XGBoost
+
+⬜ Performance Comparison
+
+⬜ Final Evaluation
+
+---
+
+# Expected Final Contribution
+
+The final system will provide
+
+- High intrusion detection accuracy
+- Explainable predictions
+- Feature-level interpretation
+- Lightweight IDS through SHAP-guided feature selection
+- Better transparency and trust for cloud security applications
+
+---
+
+# GitHub Progress
+
+Current Modules
+
+- Dataset Loader
+- Validation
+- Cleaning
+- EDA
+- Feature Distribution
+- Outlier Analysis
+- Correlation Analysis
+- Feature Selection
+- Feature Scaling
+- Train-Test Split
+- Random Forest
+- XGBoost
+
+Generated Outputs
+
+- Metrics Reports
+- Confusion Matrices
+- Feature Importance Reports
+- Trained Models
+
+---
+
+Current Progress
+
+Overall Completion
+
+Approximately **75% Complete**
+
+Remaining Work
+
+- Explainable AI
+- Feature Optimization
+- Comparative Analysis
+- Documentation
+- Final Presentation
