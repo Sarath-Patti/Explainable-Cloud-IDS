@@ -1,0 +1,12 @@
+Explainable Cloud IDS Research Summary
+=============================================
+
+Random Forest Best Accuracy : 0.999900
+Random Forest Features      : 30
+
+XGBoost Best Accuracy       : 1.000000
+XGBoost Features            : 30
+
+Research Conclusion
+-------------------
+SHAP successfully identified the most informative network-flow features. Reduced feature models maintained nearly identical detection performance while decreasing computational complexity.

@@ -1,71 +1,113 @@
-# Explainable Cloud Intrusion Detection System
+# Explainable Cloud IDS using Machine Learning and SHAP
 
-An Explainable Artificial Intelligence (XAI) based Intrusion Detection System for cloud environments using Machine Learning and SHAP explainability.
+<p align="center">
+  <img src="reports/architecture.png" width="900">
+</p>
 
-This project is being developed as a Summer Research Project at the Department of Computer Science and Engineering, National Institute of Technology Rourkela.
+<p align="center">
 
----
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange)
+![XGBoost](https://img.shields.io/badge/XGBoost-Latest-green)
+![SHAP](https://img.shields.io/badge/Explainability-SHAP-red)
+![Status](https://img.shields.io/badge/Research-Completed-brightgreen)
 
-## Project Motivation
-
-Cloud computing has become the backbone of modern applications, making it a major target for cyber attacks such as DDoS, Port Scans, and Web Attacks.
-
-Although Machine Learning based Intrusion Detection Systems achieve high detection accuracy, they often behave as **black-box models**, making it difficult for security analysts to understand why a particular network flow is classified as malicious.
-
-This project addresses that limitation by integrating **Explainable Artificial Intelligence (XAI)** into the intrusion detection pipeline using **SHAP (SHapley Additive exPlanations)**.
-
-The goal is to develop an IDS that is not only accurate but also transparent and trustworthy.
+</p>
 
 ---
 
-# Research Objectives
+## Overview
 
-- Build a machine learning based Cloud IDS
-- Perform comprehensive data preprocessing
-- Analyze network traffic characteristics
-- Train high-performance ML models
-- Explain predictions using SHAP
-- Identify the most influential network traffic features
-- Develop a lightweight and explainable intrusion detection framework
+Explainable Cloud IDS is a machine learning-based Intrusion Detection System (IDS) that detects Distributed Denial-of-Service (DDoS) attacks in cloud environments while providing transparent and interpretable predictions using SHAP (SHapley Additive exPlanations).
+
+Unlike traditional IDS models that operate as black boxes, this framework explains **why** a network flow is classified as malicious and identifies the most influential features responsible for each prediction.
+
+The project also demonstrates that SHAP-based feature selection can significantly reduce the feature space while maintaining nearly identical detection performance, resulting in a lightweight and efficient intrusion detection system.
 
 ---
 
-# Proposed Research Extension
+# Framework Architecture
 
-Most existing IDS research focuses primarily on improving classification accuracy.
+<p align="center">
+  <img src="reports/project_architecture.png" width="950">
+</p>
 
-This project extends traditional IDS by introducing:
+---
 
-- Explainable AI using SHAP
-- Global and local prediction explanations
-- SHAP-guided feature selection
-- Lightweight IDS using Top-K important features
-- Comparative performance analysis between full-feature and reduced-feature models
+# Objectives
+
+- Detect DDoS attacks using machine learning
+- Compare Random Forest and XGBoost classifiers
+- Explain model predictions using SHAP
+- Reduce redundant features without sacrificing performance
+- Build a lightweight and interpretable Cloud IDS
 
 ---
 
 # Dataset
 
-Dataset Used
+**Dataset Used**
 
-**CIC-IDS2017**
+- CICIDS2017 Dataset
+- Friday Working Hours – Afternoon DDoS
 
-Working Dataset
+Dataset characteristics
 
-- Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
-
-Dataset contains
-
-- Benign traffic
-- DDoS attacks
+- 223,082 network flows
+- Binary classification
+- Classes:
+  - BENIGN
+  - DDoS
 
 ---
 
-# Project Structure
+# Project Workflow
 
-```text
+```
+CICIDS2017 Dataset
+        │
+        ▼
+Data Cleaning
+        │
+        ▼
+Exploratory Data Analysis
+        │
+        ▼
+Correlation Analysis
+        │
+        ▼
+Feature Selection
+        │
+        ▼
+Feature Scaling
+        │
+        ▼
+Random Forest + XGBoost
+        │
+        ▼
+SHAP Explainability
+        │
+        ▼
+Top-30 / Top-20 / Top-10 Features
+        │
+        ▼
+Model Retraining
+        │
+        ▼
+Experimental Comparison
+        │
+        ▼
+Explainable Cloud IDS
+```
+
+---
+
+# Repository Structure
+
+```
 Explainable-Cloud-IDS/
 
+│
 ├── data/
 │   ├── raw/
 │   └── processed/
@@ -75,20 +117,22 @@ Explainable-Cloud-IDS/
 │   └── xgboost_model.pkl
 │
 ├── reports/
-│   ├── research_notes.md
+│   ├── project_architecture.png
+│   ├── correlation_heatmap.png
 │   ├── class_distribution.png
-│   ├── random_forest_metrics.csv
-│   ├── random_forest_confusion_matrix.png
-│   ├── random_forest_feature_importance.csv
-│   ├── random_forest_feature_importance.png
-│   ├── xgboost_metrics.csv
-│   ├── xgboost_confusion_matrix.png
-│   ├── xgboost_feature_importance.csv
-│   └── xgboost_feature_importance.png
+│   ├── feature distributions
+│   ├── outlier analysis
+│   ├── random forest reports
+│   ├── xgboost reports
+│   ├── shap summary
+│   ├── shap feature importance
+│   ├── shap feature ranking
+│   ├── comparison_table.csv
+│   ├── research_summary.txt
+│   └── experiment plots
 │
 ├── src/
 │   ├── dataset_loader.py
-│   ├── validation.py
 │   ├── cleaning.py
 │   ├── eda.py
 │   ├── feature_distribution.py
@@ -98,174 +142,102 @@ Explainable-Cloud-IDS/
 │   ├── scaling.py
 │   ├── data_split.py
 │   ├── random_forest.py
-│   └── xgboost_model.py
+│   ├── xgboost_model.py
+│   ├── shap_analysis.py
+│   ├── shap_feature_selection.py
+│   ├── train_topk.py
+│   └── experiment_analysis.py
 │
+├── notebooks/
 ├── README.md
-├── CHANGELOG.md
 └── requirements.txt
 ```
 
 ---
 
-# Research Workflow
-
-```text
-Raw Dataset
-      │
-      ▼
-Dataset Validation
-      │
-      ▼
-Data Cleaning
-      │
-      ▼
-Exploratory Data Analysis
-      │
-      ▼
-Correlation Analysis
-      │
-      ▼
-Feature Selection
-      │
-      ▼
-Feature Scaling
-      │
-      ▼
-Train-Test Split
-      │
-      ▼
-Random Forest
-      │
-      ▼
-XGBoost
-      │
-      ▼
-SHAP Explainability
-      │
-      ▼
-Top-K Feature Selection
-      │
-      ▼
-Performance Comparison
-```
-
----
-
-# Completed Work
-
-## Phase 1 — Project Foundation
-
-- Project setup
-- GitHub repository
-- Dataset loading
-- Dataset validation
-- Data cleaning
-
----
-
-## Phase 2 — Exploratory Data Analysis
-
-- Summary statistics
-- Dataset exploration
-- Class distribution
-- Feature distributions
-- Outlier analysis
-- Correlation analysis
-
----
-
-## Phase 3 — Feature Engineering
-
-- Correlation-based feature selection
-- 45% feature reduction
-- Feature scaling
-- Train-test split
-
----
-
-## Phase 4 — Machine Learning Models
+# Machine Learning Models
 
 ### Random Forest
 
-Accuracy
-
-99.99%
-
-Generated
-
-- Trained model
-- Evaluation metrics
-- Confusion matrix
-- Feature importance report
-- Feature importance visualization
+- Feature Importance
+- Confusion Matrix
+- Classification Report
+- Performance Metrics
 
 ---
 
 ### XGBoost
 
-Accuracy
-
-100.00%
-
-Generated
-
-- Trained model
-- Evaluation metrics
-- Confusion matrix
-- Feature importance report
-- Feature importance visualization
+- Gradient Boosted Decision Trees
+- High-speed Training
+- Feature Importance
+- Confusion Matrix
+- Classification Report
 
 ---
 
-# Current Results
+# Explainable AI
 
-| Model | Accuracy |
-|--------|----------|
-| Random Forest | 99.99% |
-| XGBoost | 100.00% |
+SHAP is used to interpret predictions made by XGBoost.
 
----
+Generated outputs include
 
-# Current Research Progress
-
-| Phase | Status |
-|--------|--------|
-| Dataset Validation | ✅ |
-| Data Cleaning | ✅ |
-| Exploratory Data Analysis | ✅ |
-| Feature Engineering | ✅ |
-| Random Forest | ✅ |
-| XGBoost | ✅ |
-| SHAP Explainability | 🔄 In Progress |
-| Feature Optimization | ⏳ |
-| Performance Comparison | ⏳ |
-| Final Report | ⏳ |
-
-Overall Project Progress
-
-**Approximately 75% Completed**
-
----
-
-# Upcoming Work
-
-- SHAP Explainability
 - SHAP Summary Plot
-- SHAP Waterfall Plot
 - SHAP Feature Importance
-- Top-30 Feature Selection
-- Top-20 Feature Selection
-- Top-10 Feature Selection
-- Retraining ML Models
-- Comparative Performance Analysis
-- Final Report
-- Research Presentation
+- Global Feature Ranking
+- Top-30 Features
+- Top-20 Features
+- Top-10 Features
+
+---
+
+# Experimental Results
+
+| Model | Features | Accuracy | Precision | Recall | F1 Score |
+|--------|---------:|---------:|----------:|--------:|---------:|
+| Random Forest | 30 | 99.9888% | 99.99% | 99.99% | 99.99% |
+| XGBoost | 30 | 99.9978% | 100.00% | 99.996% | 99.998% |
+| Random Forest | 20 | 99.9888% | 99.99% | 99.99% | 99.99% |
+| XGBoost | 20 | 99.9978% | 100.00% | 99.996% | 99.998% |
+| Random Forest | 10 | 99.9910% | 99.99% | 99.996% | 99.992% |
+| XGBoost | 10 | 99.9978% | 100.00% | 99.996% | 99.998% |
+
+---
+
+# Key Findings
+
+- Reduced features from **43 to 10** using SHAP ranking.
+- Maintained nearly identical detection accuracy after feature reduction.
+- XGBoost achieved the highest overall performance.
+- Feature reduction significantly decreased Random Forest training time.
+- SHAP provided clear explanations for model decisions.
+
+---
+
+# Generated Reports
+
+The project automatically generates
+
+- Correlation Heatmap
+- Feature Distribution Plots
+- Outlier Analysis
+- Random Forest Metrics
+- XGBoost Metrics
+- Confusion Matrices
+- Feature Importance Charts
+- SHAP Summary Plot
+- SHAP Feature Importance
+- SHAP Feature Ranking
+- Accuracy Comparison
+- F1 Score Comparison
+- Training Time Comparison
+- Research Summary
 
 ---
 
 # Technologies Used
 
-Programming Language
+Programming
 
 - Python
 
@@ -279,38 +251,37 @@ Libraries
 - SHAP
 - Joblib
 
-Tools
+---
 
-- Git
-- GitHub
-- Jupyter Notebook
-- Visual Studio Code
+# Future Enhancements
+
+- Web-based Explainable Cloud IDS Dashboard
+- Real-time Packet Classification
+- Live SHAP Explanations
+- REST API
+- Docker Deployment
+- Kubernetes Deployment
+- AWS / Azure / GCP Integration
 
 ---
 
-# Future Scope
+# Research Contribution
 
-- Multi-class intrusion detection
-- Real-time cloud traffic monitoring
-- Deep learning based IDS
-- Hybrid Explainable AI models
-- Deployment using Flask/FastAPI
-- Cloud-native intrusion detection framework
+This work demonstrates that explainability can be used not only to interpret machine learning predictions but also to identify a compact subset of highly informative network-flow features.
+
+By combining SHAP-based feature ranking with feature reduction and model retraining, the proposed framework achieves high detection accuracy while reducing computational complexity, making it suitable for efficient cloud intrusion detection.
 
 ---
 
 # Author
 
-**Patti Sarath**
+**Sarath Patti**
 
-M.Tech, Computer Science and Engineering
-
+M.Tech Computer Science  
 National Institute of Technology Rourkela
-
-Summer Research Project 2026
 
 ---
 
-# License
+## License
 
-This repository is intended for academic and research purposes.
+This project is intended for academic and research purposes.
