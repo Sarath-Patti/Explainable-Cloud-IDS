@@ -1,10 +1,6 @@
 # Explainable Cloud IDS using Machine Learning and SHAP
 
 <p align="center">
-  <img src="reports/architecture.png" width="900">
-</p>
-
-<p align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange)
