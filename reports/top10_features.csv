@@ -1,0 +1,11 @@
+Feature,Mean_SHAP
+Fwd Packet Length Max,4.944882
+Total Length of Fwd Packets,2.5694456
+Destination Port,0.92401695
+Bwd Packet Length Max,0.8722991
+Init_Win_bytes_forward,0.8536739
+Bwd IAT Total,0.29216662
+Init_Win_bytes_backward,0.24225645
+Flow Duration,0.2321593
+Total Fwd Packets,0.14917617
+Bwd Packets/s,0.10128728

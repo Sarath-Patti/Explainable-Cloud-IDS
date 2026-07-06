@@ -1,0 +1,31 @@
+Feature,Mean_SHAP
+Fwd Packet Length Max,4.944882
+Total Length of Fwd Packets,2.5694456
+Destination Port,0.92401695
+Bwd Packet Length Max,0.8722991
+Init_Win_bytes_forward,0.8536739
+Bwd IAT Total,0.29216662
+Init_Win_bytes_backward,0.24225645
+Flow Duration,0.2321593
+Total Fwd Packets,0.14917617
+Bwd Packets/s,0.10128728
+Bwd IAT Mean,0.094975494
+ACK Flag Count,0.088037595
+Flow Packets/s,0.06639269
+act_data_pkt_fwd,0.05094387
+FIN Flag Count,0.044915885
+URG Flag Count,0.036382895
+Fwd IAT Min,0.029378848
+Flow Bytes/s,0.028842416
+Flow IAT Min,0.026426658
+Flow IAT Mean,0.01969116
+Fwd Packet Length Min,0.019160068
+Bwd Packet Length Min,0.007003483
+Bwd IAT Std,0.0023692357
+Active Mean,0.001323462
+min_seg_size_forward,0.0
+Bwd Avg Bulk Rate,0.0
+Active Std,0.0
+Fwd Avg Packets/Bulk,0.0
+Bwd Avg Packets/Bulk,0.0
+Bwd Avg Bytes/Bulk,0.0
