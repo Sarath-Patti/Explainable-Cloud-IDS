@@ -307,15 +307,120 @@ XGBoost slightly outperformed Random Forest by reducing the number of misclassif
 
 # Research Extension
 
-Unlike traditional IDS implementations that focus only on maximizing classification accuracy, this research proposes an Explainable Intrusion Detection Framework.
+The research extension has now been successfully completed.
 
-The proposed extension integrates Explainable Artificial Intelligence using SHAP to provide transparent explanations for every prediction.
+Unlike conventional Intrusion Detection Systems that primarily focus on maximizing prediction accuracy, this work demonstrates how Explainable Artificial Intelligence (XAI) can improve both model transparency and computational efficiency.
 
-The explainability framework will also be used to identify the most influential features and construct a lightweight intrusion detection model using only the most informative network-flow features.
+SHAP (SHapley Additive exPlanations) was integrated into the proposed framework to:
+
+- Explain model predictions
+- Identify the most influential network-flow features
+- Reduce feature dimensionality
+- Build lightweight IDS models without sacrificing detection performance
+
+This transforms the IDS from a black-box classifier into an interpretable and explainable security framework.
 
 ---
 
-# Work Completed So Far
+# Phase 5 – SHAP Explainability
+
+## Completed
+
+Generated
+
+- SHAP Summary Plot
+- SHAP Feature Importance Plot
+- Global SHAP Feature Ranking
+
+Top Influential Features
+
+- Fwd Packet Length Max
+- Total Length of Fwd Packets
+- Destination Port
+- Bwd Packet Length Max
+- Init_Win_bytes_forward
+- Bwd IAT Total
+- Init_Win_bytes_backward
+
+Observation
+
+SHAP clearly identified the features contributing most significantly to DDoS attack detection while providing global model interpretability.
+
+---
+
+# Phase 6 – SHAP-Based Feature Optimization
+
+Three lightweight feature subsets were created using SHAP rankings.
+
+Generated Feature Sets
+
+- Top-30 Features
+- Top-20 Features
+- Top-10 Features
+
+Each feature subset was used to retrain both
+
+- Random Forest
+- XGBoost
+
+---
+
+# Experimental Results
+
+| Model | Features | Accuracy | Precision | Recall | F1 Score |
+|--------|---------:|----------:|-----------:|---------:|----------:|
+| Random Forest | 30 | 99.9888% | 99.99% | 99.99% | 99.99% |
+| XGBoost | 30 | 99.9978% | 100.00% | 99.996% | 99.998% |
+| Random Forest | 20 | 99.9888% | 99.99% | 99.99% | 99.99% |
+| XGBoost | 20 | 99.9978% | 100.00% | 99.996% | 99.998% |
+| Random Forest | 10 | 99.9910% | 99.99% | 99.996% | 99.992% |
+| XGBoost | 10 | 99.9978% | 100.00% | 99.996% | 99.998% |
+
+---
+
+# Experimental Analysis
+
+Generated Reports
+
+- SHAP Summary Plot
+- SHAP Feature Importance Plot
+- SHAP Feature Ranking
+- Top-30 Features
+- Top-20 Features
+- Top-10 Features
+- Accuracy Comparison
+- F1 Score Comparison
+- Training Time Comparison
+- Comparison Table
+- Research Summary
+
+---
+
+# Key Findings
+
+- Successfully reduced the feature space from **43 to 10** using SHAP.
+- Detection accuracy remained nearly identical after feature reduction.
+- XGBoost consistently achieved the best overall performance.
+- Random Forest training time decreased significantly with fewer features.
+- SHAP proved valuable for both explainability and feature optimization.
+
+---
+
+# Research Contribution
+
+The proposed framework demonstrates that explainability can be used not only for interpreting predictions but also for constructing efficient machine learning models.
+
+Major contributions include:
+
+- Explainable Cloud IDS using SHAP
+- Lightweight IDS through SHAP-guided feature selection
+- Comparative evaluation of Random Forest and XGBoost
+- Performance analysis across Top-30, Top-20, and Top-10 feature subsets
+- Experimental validation of feature reduction with negligible accuracy loss
+
+---
+
+# Work Completed
 
 ✅ Dataset Validation
 
@@ -341,43 +446,42 @@ The explainability framework will also be used to identify the most influential 
 
 ✅ XGBoost
 
----
+✅ SHAP Explainability
 
-# Next Research Tasks
+✅ SHAP Summary Plot
 
-⬜ SHAP Explainability
+✅ SHAP Feature Importance
 
-⬜ SHAP Summary Plot
+✅ SHAP Feature Ranking
 
-⬜ SHAP Waterfall Plot
+✅ Top-30 Feature Selection
 
-⬜ SHAP Feature Importance
+✅ Top-20 Feature Selection
 
-⬜ Top-30 Feature Selection
+✅ Top-10 Feature Selection
 
-⬜ Top-20 Feature Selection
+✅ Retrained Random Forest
 
-⬜ Top-10 Feature Selection
+✅ Retrained XGBoost
 
-⬜ Retrain Random Forest
+✅ Comparative Performance Analysis
 
-⬜ Retrain XGBoost
-
-⬜ Performance Comparison
-
-⬜ Final Evaluation
+✅ Research Documentation
 
 ---
 
-# Expected Final Contribution
+# Next Phase
 
-The final system will provide
+The next stage of the project focuses on transforming the research framework into a practical application.
 
-- High intrusion detection accuracy
-- Explainable predictions
-- Feature-level interpretation
-- Lightweight IDS through SHAP-guided feature selection
-- Better transparency and trust for cloud security applications
+Planned features include:
+
+- Explainable Cloud IDS Web Application
+- CSV Upload Interface
+- Attack Prediction Dashboard
+- Confidence Score Visualization
+- SHAP-Based Prediction Explanations
+- Downloadable Analysis Reports
 
 ---
 
@@ -397,26 +501,37 @@ Current Modules
 - Train-Test Split
 - Random Forest
 - XGBoost
+- SHAP Analysis
+- SHAP Feature Selection
+- Lightweight IDS Training
+- Experimental Analysis
 
 Generated Outputs
 
+- Trained Models
 - Metrics Reports
 - Confusion Matrices
 - Feature Importance Reports
-- Trained Models
+- SHAP Visualizations
+- Feature Ranking Reports
+- Comparison Table
+- Research Summary
+- Architecture Diagram
 
 ---
 
-Current Progress
+# Current Progress
 
 Overall Completion
 
-Approximately **75% Complete**
+**Research Phase: 100% Complete**
+
+**Overall Project: Approximately 80% Complete**
 
 Remaining Work
 
-- Explainable AI
-- Feature Optimization
-- Comparative Analysis
-- Documentation
-- Final Presentation
+- Explainable Cloud IDS Web Application
+- Interactive Dashboard
+- Report Generation
+- Deployment
+- Final Demonstration
