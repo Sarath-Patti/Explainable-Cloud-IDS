@@ -29,7 +29,7 @@ The project also demonstrates that SHAP-based feature selection can significantl
 # Framework Architecture
 
 <p align="center">
-  <img src="reports/project_architecture.png" width="950">
+  <img src="reports/architecture.png" width="950">
 </p>
 
 ---
