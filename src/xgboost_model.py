@@ -114,7 +114,10 @@ print(f"\nFeatures after reduction: {X.shape[1]}")
 encoder = LabelEncoder()
 
 y = encoder.fit_transform(y)
-
+joblib.dump(
+    encoder,
+    "models/label_encoder.pkl"
+)
 # ============================================================
 # TRAIN TEST SPLIT
 # ============================================================

@@ -1,4 +1,6 @@
 import pandas as pd
+import os
+import joblib
 
 from sklearn.preprocessing import StandardScaler
 
@@ -38,12 +40,19 @@ to_drop = [
 ]
 
 X = X.drop(columns=to_drop)
-
+os.makedirs("models", exist_ok=True)
 # Scale features
 scaler = StandardScaler()
 
 X_scaled = scaler.fit_transform(X)
-
+joblib.dump(
+    scaler,
+    "models/scaler.pkl"
+)
+joblib.dump(
+    list(X.columns),
+    "models/selected_features.pkl"
+)
 scaled_df = pd.DataFrame(
     X_scaled,
     columns=X.columns
