@@ -87,6 +87,64 @@ Prediction Result
 </tr>
 
 </table>
+<hr>
+
+<h4 class="mt-4 mb-3">
+
+Top Contributing Features (SHAP)
+
+</h4>
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+
+<th>Rank</th>
+
+<th>Feature</th>
+
+<th>SHAP Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for feature in result.top_features %}
+
+<tr>
+
+<td>{{ loop.index }}</td>
+
+<td>{{ feature.Feature }}</td>
+
+<td>{{ "%.4f"|format(feature.SHAP) }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+<hr>
+
+<h4 class="mt-4 mb-3">
+SHAP Feature Importance
+</h4>
+
+<div class="text-center">
+
+    <img
+        src="{{ url_for('static', filename='images/shap_bar.png') }}"
+        alt="SHAP Feature Importance"
+        class="img-fluid rounded shadow"
+        style="max-width: 800px;">
+
+</div>
 
 {% endif %}
 
