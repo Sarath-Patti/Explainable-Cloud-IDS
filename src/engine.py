@@ -1,4 +1,5 @@
 import joblib
+import time
 
 from src.preprocess import preprocess
 from src.predictor import predict
@@ -6,34 +7,49 @@ from src.predictor import predict
 
 class InferenceEngine:
     """
-    Handles the complete inference pipeline.
+    Complete inference pipeline.
     """
 
     def __init__(self):
-        # Load model once when the application starts
+
         self.model = joblib.load(
             "models/xgboost_model.pkl"
         )
 
-        # Load label encoder once
         self.encoder = joblib.load(
             "models/label_encoder.pkl"
         )
 
+        self.feature_count = len(
+            joblib.load("models/selected_features.pkl")
+        )
+
     def predict(self, csv_path):
-        """
-        Complete prediction workflow:
-        1. Preprocess uploaded CSV
-        2. Predict using XGBoost
-        3. Convert prediction back to original label
-        """
+
+        start = time.time()
 
         X = preprocess(csv_path)
 
-        prediction = predict(
+        prediction, confidence = predict(
             self.model,
             self.encoder,
             X
         )
 
-        return prediction
+        inference_time = (
+            time.time() - start
+        ) * 1000
+
+        return {
+            "prediction": prediction[0],
+            "confidence": round(
+                confidence[0] * 100,
+                2
+            ),
+            "features": self.feature_count,
+            "model": "XGBoost",
+            "time": round(
+                inference_time,
+                2
+            )
+        }

@@ -1,4 +1,5 @@
 import os
+import traceback
 
 from flask import (
     Flask,
@@ -45,21 +46,26 @@ def prediction():
 
     try:
 
-        prediction = engine.predict(filepath)
+        result = engine.predict(filepath)
 
         return render_template(
             "result.html",
-            prediction=prediction[0]
+            result=result,
+            filename=file.filename
         )
 
     except Exception as e:
 
+        print("=" * 80)
+        print("ERROR DURING PREDICTION")
+        traceback.print_exc()
+        print("=" * 80)
+
         return render_template(
             "result.html",
-            prediction=None,
-            error=str(e)
+            error=f"{type(e).__name__}: {e}"
         )
-
-
 if __name__ == "__main__":
     app.run(debug=True)
+   
+    

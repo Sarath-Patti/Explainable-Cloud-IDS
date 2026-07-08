@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport"
       content="width=device-width, initial-scale=1">
 
@@ -18,17 +17,17 @@ rel="stylesheet">
 
 <body class="bg-light">
 
-<div class="container mt-5">
+<div class="container py-5">
 
 <div class="card shadow">
 
-<div class="card-body text-center">
+<div class="card-body">
 
-<h1 class="mb-4">
+<h2 class="text-center mb-4">
 
 Prediction Result
 
-</h1>
+</h2>
 
 {% if error %}
 
@@ -40,33 +39,68 @@ Prediction Result
 
 {% else %}
 
-{% if prediction == "BENIGN" %}
+{% if result.prediction == "BENIGN" %}
 
-<h2 class="text-success">
+<h1 class="text-success text-center">
 
 🟢 BENIGN
 
-</h2>
+</h1>
 
 {% else %}
 
-<h2 class="text-danger">
+<h1 class="text-danger text-center">
 
 🔴 DDoS Attack
 
-</h2>
+</h1>
 
 {% endif %}
 
+<hr>
+
+<table class="table">
+
+<tr>
+<td><strong>Confidence</strong></td>
+<td>{{ result.confidence }}%</td>
+</tr>
+
+<tr>
+<td><strong>Model</strong></td>
+<td>{{ result.model }}</td>
+</tr>
+
+<tr>
+<td><strong>Features Used</strong></td>
+<td>{{ result.features }}</td>
+</tr>
+
+<tr>
+<td><strong>Inference Time</strong></td>
+<td>{{ result.time }} ms</td>
+</tr>
+
+<tr>
+<td><strong>Uploaded File</strong></td>
+<td>{{ filename }}</td>
+</tr>
+
+</table>
+
 {% endif %}
+
+<div class="text-center">
 
 <a
 href="/"
-class="btn btn-primary mt-4">
+class="btn btn-primary">
 
 Analyze Another File
 
 </a>
+
+</div>
 
 </div>
 

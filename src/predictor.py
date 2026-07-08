@@ -1,9 +1,17 @@
+import numpy as np
+
+
 def predict(model, encoder, X):
+    """
+    Predict the class label and confidence score.
+    """
 
     prediction = model.predict(X)
 
-    prediction = encoder.inverse_transform(
-        prediction
-    )
+    probabilities = model.predict_proba(X)
 
-    return prediction
+    confidence = np.max(probabilities, axis=1)
+
+    prediction = encoder.inverse_transform(prediction)
+
+    return prediction, confidence
