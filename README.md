@@ -68,7 +68,7 @@ PDF Report Generation
 
 ## Prediction Dashboard
 
-![Dashboard](docs/dashboard.png)
+![Dashboard](docs/dasboard.png)
 
 ---
 
