@@ -4,10 +4,12 @@ import traceback
 from flask import (
     Flask,
     render_template,
-    request
+    request,
+    send_file
 )
 
 from src.engine import InferenceEngine
+from src.report_generator import ReportGenerator
 
 app = Flask(__name__)
 
@@ -17,8 +19,13 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Create the inference engine only once
+# Initialize components
 engine = InferenceEngine()
+report_generator = ReportGenerator()
+
+# Store latest prediction for PDF generation
+latest_result = None
+latest_filename = None
 
 
 @app.route("/")
@@ -28,6 +35,9 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def prediction():
+
+    global latest_result
+    global latest_filename
 
     if "file" not in request.files:
         return "No file uploaded."
@@ -48,6 +58,9 @@ def prediction():
 
         result = engine.predict(filepath)
 
+        latest_result = result
+        latest_filename = file.filename
+
         return render_template(
             "result.html",
             result=result,
@@ -65,7 +78,31 @@ def prediction():
             "result.html",
             error=f"{type(e).__name__}: {e}"
         )
+
+
+@app.route("/download_report")
+def download_report():
+
+    global latest_result
+    global latest_filename
+
+    if latest_result is None:
+        return "No prediction available. Please upload a file first."
+
+    report_path = report_generator.generate(
+        latest_result,
+        latest_filename
+    )
+
+    return send_file(
+        report_path,
+        as_attachment=True
+    )
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
-   
-    
+    app.run(
+        host="127.0.0.1",
+        port=5001,
+        debug=True
+    )

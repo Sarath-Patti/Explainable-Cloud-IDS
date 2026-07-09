@@ -1,283 +1,282 @@
-# Explainable Cloud IDS using Machine Learning and SHAP
+# 🛡️ Explainable Cloud IDS
 
-<p align="center">
-
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange)
-![XGBoost](https://img.shields.io/badge/XGBoost-Latest-green)
-![SHAP](https://img.shields.io/badge/Explainability-SHAP-red)
-![Status](https://img.shields.io/badge/Research-Completed-brightgreen)
-
-</p>
+<p align="center"> ![Python](https://img.shields.io/badge/Python-3.11-blue) ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange) ![XGBoost](https://img.shields.io/badge/XGBoost-Latest-green) ![SHAP](https://img.shields.io/badge/Explainability-SHAP-red) ![Status](https://img.shields.io/badge/Research-Completed-brightgreen) </p>
 
 ---
 
 ## Overview
 
-Explainable Cloud IDS is a machine learning-based Intrusion Detection System (IDS) that detects Distributed Denial-of-Service (DDoS) attacks in cloud environments while providing transparent and interpretable predictions using SHAP (SHapley Additive exPlanations).
+An AI-powered Cloud Intrusion Detection System that detects DDoS attacks using **XGBoost** and explains every prediction using **SHAP (SHapley Additive Explanations)**.
 
-Unlike traditional IDS models that operate as black boxes, this framework explains **why** a network flow is classified as malicious and identifies the most influential features responsible for each prediction.
-
-The project also demonstrates that SHAP-based feature selection can significantly reduce the feature space while maintaining nearly identical detection performance, resulting in a lightweight and efficient intrusion detection system.
+The project provides an interactive Flask dashboard, confidence estimation, feature importance visualization, and downloadable PDF reports for explainable cybersecurity analysis.
 
 ---
 
-# Framework Architecture
+## 🚀 Features
 
-<p align="center">
-  <img src="reports/architecture.png" width="950">
-</p>
-
----
-
-# Objectives
-
-- Detect DDoS attacks using machine learning
-- Compare Random Forest and XGBoost classifiers
-- Explain model predictions using SHAP
-- Reduce redundant features without sacrificing performance
-- Build a lightweight and interpretable Cloud IDS
+- 📂 Upload network traffic CSV files
+- 🤖 XGBoost-based intrusion detection
+- 📊 SHAP explainability for every prediction
+- 📈 Feature importance visualization
+- 📉 Confidence score estimation
+- ⚡ Fast inference pipeline
+- 📄 Downloadable PDF reports
+- 🌐 Interactive Flask web interface
 
 ---
 
-# Dataset
+# 🏗️ System Architecture
 
-**Dataset Used**
+![Architecture](reports/architecture.png)
 
-- CICIDS2017 Dataset
-- Friday Working Hours – Afternoon DDoS
-
-Dataset characteristics
-
-- 223,082 network flows
-- Binary classification
-- Classes:
-  - BENIGN
-  - DDoS
-
----
-
-# Project Workflow
+The inference workflow is shown below:
 
 ```
-CICIDS2017 Dataset
-        │
-        ▼
-Data Cleaning
-        │
-        ▼
-Exploratory Data Analysis
-        │
-        ▼
-Correlation Analysis
-        │
-        ▼
+CSV Upload
+     │
+     ▼
+Data Preprocessing
+     │
+     ▼
 Feature Selection
-        │
-        ▼
-Feature Scaling
-        │
-        ▼
-Random Forest + XGBoost
-        │
-        ▼
+     │
+     ▼
+XGBoost Model
+     │
+     ▼
+Prediction + Confidence
+     │
+     ▼
 SHAP Explainability
-        │
-        ▼
-Top-30 / Top-20 / Top-10 Features
-        │
-        ▼
-Model Retraining
-        │
-        ▼
-Experimental Comparison
-        │
-        ▼
-Explainable Cloud IDS
+     │
+     ▼
+Interactive Dashboard
+     │
+     ▼
+PDF Report Generation
 ```
 
 ---
 
-# Repository Structure
+# 📷 Screenshots
+
+## Home Page
+
+![Home](docs/home.png)
+
+---
+
+## Prediction Dashboard
+
+![Dashboard](docs/dashboard.png)
+
+---
+
+## PDF Report
+
+![PDF](docs/pdf_report.png)
+
+---
+
+## SHAP Feature Importance
+
+![SHAP](docs/shap_bar.png)
+
+---
+
+# ⚙️ Technology Stack
+
+## Programming Language
+
+- Python 3
+
+## Machine Learning
+
+- XGBoost
+- Random Forest
+- SHAP
+- Scikit-learn
+
+## Data Processing
+
+- Pandas
+- NumPy
+
+## Visualization
+
+- Matplotlib
+
+## Web Framework
+
+- Flask
+- Bootstrap 5
+
+## Report Generation
+
+- ReportLab
+
+---
+
+# 📁 Project Structure
 
 ```
 Explainable-Cloud-IDS/
 
-│
+├── app.py
+├── requirements.txt
+├── README.md
+
 ├── data/
 │   ├── raw/
-│   └── processed/
-│
+│   ├── processed/
+│   └── test/
+
+├── docs/
+│   ├── architecture.png
+│   ├── home.png
+│   ├── dashboard.png
+│   ├── pdf_report.png
+│   └── shap_bar.png
+
 ├── models/
+│   ├── xgboost_model.pkl
 │   ├── random_forest_model.pkl
-│   └── xgboost_model.pkl
-│
+│   ├── scaler.pkl
+│   ├── selected_features.pkl
+│   └── label_encoder.pkl
+
 ├── reports/
-│   ├── project_architecture.png
-│   ├── correlation_heatmap.png
-│   ├── class_distribution.png
-│   ├── feature distributions
-│   ├── outlier analysis
-│   ├── random forest reports
-│   ├── xgboost reports
-│   ├── shap summary
-│   ├── shap feature importance
-│   ├── shap feature ranking
-│   ├── comparison_table.csv
-│   ├── research_summary.txt
-│   └── experiment plots
-│
+
 ├── src/
-│   ├── dataset_loader.py
-│   ├── cleaning.py
-│   ├── eda.py
-│   ├── feature_distribution.py
-│   ├── outlier_analysis.py
-│   ├── correlation_analysis.py
-│   ├── feature_selection.py
-│   ├── scaling.py
-│   ├── data_split.py
-│   ├── random_forest.py
-│   ├── xgboost_model.py
-│   ├── shap_analysis.py
-│   ├── shap_feature_selection.py
-│   ├── train_topk.py
-│   └── experiment_analysis.py
-│
-├── notebooks/
-├── README.md
-└── requirements.txt
+│   ├── preprocess.py
+│   ├── predictor.py
+│   ├── engine.py
+│   ├── shap_explainer.py
+│   ├── report_generator.py
+│   └── create_test_file.py
+
+├── static/
+│   ├── css/
+│   └── images/
+
+└── templates/
 ```
 
 ---
 
-# Machine Learning Models
+# 🔬 Methodology
 
-### Random Forest
+The project follows the pipeline below:
 
-- Feature Importance
-- Confusion Matrix
-- Classification Report
-- Performance Metrics
-
----
-
-### XGBoost
-
-- Gradient Boosted Decision Trees
-- High-speed Training
-- Feature Importance
-- Confusion Matrix
-- Classification Report
+1. Load CICIDS2017 network traffic dataset.
+2. Remove invalid values and duplicates.
+3. Perform feature scaling.
+4. Remove highly correlated features.
+5. Train Random Forest and XGBoost models.
+6. Compare model performance.
+7. Apply SHAP explainability.
+8. Select Top-30, Top-20 and Top-10 important features.
+9. Deploy the best-performing model using Flask.
+10. Generate explainable PDF reports.
 
 ---
 
-# Explainable AI
+# 📊 Research Highlights
 
-SHAP is used to interpret predictions made by XGBoost.
-
-Generated outputs include
-
-- SHAP Summary Plot
-- SHAP Feature Importance
-- Global Feature Ranking
-- Top-30 Features
-- Top-20 Features
-- Top-10 Features
+- Correlation-based feature reduction
+- Random Forest baseline model
+- XGBoost optimization
+- SHAP explainability
+- Feature selection using SHAP
+- Interactive explainable dashboard
+- PDF report generation
 
 ---
 
-# Experimental Results
+# 📈 Results
 
-| Model | Features | Accuracy | Precision | Recall | F1 Score |
-|--------|---------:|---------:|----------:|--------:|---------:|
-| Random Forest | 30 | 99.9888% | 99.99% | 99.99% | 99.99% |
-| XGBoost | 30 | 99.9978% | 100.00% | 99.996% | 99.998% |
-| Random Forest | 20 | 99.9888% | 99.99% | 99.99% | 99.99% |
-| XGBoost | 20 | 99.9978% | 100.00% | 99.996% | 99.998% |
-| Random Forest | 10 | 99.9910% | 99.99% | 99.996% | 99.992% |
-| XGBoost | 10 | 99.9978% | 100.00% | 99.996% | 99.998% |
-
----
-
-# Key Findings
-
-- Reduced features from **43 to 10** using SHAP ranking.
-- Maintained nearly identical detection accuracy after feature reduction.
-- XGBoost achieved the highest overall performance.
-- Feature reduction significantly decreased Random Forest training time.
-- SHAP provided clear explanations for model decisions.
+| Component | Status |
+|-----------|--------|
+| Data Cleaning | ✅ |
+| Feature Scaling | ✅ |
+| Correlation Analysis | ✅ |
+| Random Forest | ✅ |
+| XGBoost | ✅ |
+| SHAP Explainability | ✅ |
+| Feature Selection | ✅ |
+| Flask Deployment | ✅ |
+| Confidence Score | ✅ |
+| PDF Report | ✅ |
 
 ---
 
-# Generated Reports
+# ▶️ Installation
 
-The project automatically generates
+```bash
+git clone <repository-url>
 
-- Correlation Heatmap
-- Feature Distribution Plots
-- Outlier Analysis
-- Random Forest Metrics
-- XGBoost Metrics
-- Confusion Matrices
-- Feature Importance Charts
-- SHAP Summary Plot
-- SHAP Feature Importance
+cd Explainable-Cloud-IDS
+
+python -m venv .venv
+
+source .venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+---
+
+# ▶️ Run the Application
+
+```bash
+python app.py
+```
+
+Open:
+
+```
+http://127.0.0.1:5001
+```
+
+Upload a CSV file and analyze the prediction.
+
+---
+
+# 📄 Generated Report
+
+The application automatically generates a PDF containing:
+
+- Prediction
+- Confidence
+- Model Information
 - SHAP Feature Ranking
-- Accuracy Comparison
-- F1 Score Comparison
-- Training Time Comparison
-- Research Summary
+- SHAP Visualization
+- Uploaded File Information
 
 ---
 
-# Technologies Used
+# 🔮 Future Improvements
 
-Programming
-
-- Python
-
-Libraries
-
-- Pandas
-- NumPy
-- Matplotlib
-- Scikit-learn
-- XGBoost
-- SHAP
-- Joblib
+- Multi-model selection
+- Real-time packet monitoring
+- Cloud deployment
+- REST API support
+- Docker containerization
+- Authentication
+- Database integration
 
 ---
 
-# Future Enhancements
-
-- Web-based Explainable Cloud IDS Dashboard
-- Real-time Packet Classification
-- Live SHAP Explanations
-- REST API
-- Docker Deployment
-- Kubernetes Deployment
-- AWS / Azure / GCP Integration
-
----
-
-# Research Contribution
-
-This work demonstrates that explainability can be used not only to interpret machine learning predictions but also to identify a compact subset of highly informative network-flow features.
-
-By combining SHAP-based feature ranking with feature reduction and model retraining, the proposed framework achieves high detection accuracy while reducing computational complexity, making it suitable for efficient cloud intrusion detection.
-
----
-
-# Author
+# 👨‍💻 Author
 
 **Sarath Patti**
 
-M.Tech Computer Science  
+M.Tech Computer Science
+
 National Institute of Technology Rourkela
 
 ---
 
-## License
+# 📜 License
 
-This project is intended for academic and research purposes.
+This project is intended for educational and research purposes.
