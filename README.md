@@ -1,4 +1,4 @@
-# 🛡️ Explainable Cloud IDS
+# 🛡️ Explainable Cloud IDS using Machine Learning and SHAP
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
@@ -13,6 +13,8 @@
 ## Overview
 
 An AI-powered Cloud Intrusion Detection System that detects DDoS attacks using **XGBoost** and explains every prediction using **SHAP (SHapley Additive Explanations)**.
+
+The project demonstrates that SHAP-based feature selection can significantly reduce the feature space while maintaining nearly identical detection performance, resulting in a lightweight and efficient intrusion detection system.
 
 The project provides an interactive Flask dashboard, confidence estimation, feature importance visualization, and downloadable PDF reports for explainable cybersecurity analysis.
 
@@ -35,30 +37,45 @@ The project provides an interactive Flask dashboard, confidence estimation, feat
 
 ![Architecture](reports/architecture.png)
 
-The inference workflow is shown below:
+## 🔄 Project Workflow
 
-```
-CSV Upload
-     │
-     ▼
-Data Preprocessing
-     │
-     ▼
+```text
+CICIDS2017 Dataset
+        │
+        ▼
+Data Cleaning
+        │
+        ▼
+Exploratory Data Analysis
+        │
+        ▼
+Correlation Analysis
+        │
+        ▼
 Feature Selection
-     │
-     ▼
-XGBoost Model
-     │
-     ▼
-Prediction + Confidence
-     │
-     ▼
+        │
+        ▼
+Feature Scaling
+        │
+        ▼
+Random Forest + XGBoost
+        │
+        ▼
 SHAP Explainability
-     │
-     ▼
-Interactive Dashboard
-     │
-     ▼
+        │
+        ▼
+Top-30 / Top-20 / Top-10 Features
+        │
+        ▼
+Model Retraining
+        │
+        ▼
+Experimental Comparison
+        │
+        ▼
+Explainable Cloud IDS Dashboard
+        │
+        ▼
 PDF Report Generation
 ```
 
