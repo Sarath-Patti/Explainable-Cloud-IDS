@@ -1,6 +1,12 @@
 # 🛡️ Explainable Cloud IDS
 
-<p align="center"> ![Python](https://img.shields.io/badge/Python-3.11-blue) ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange) ![XGBoost](https://img.shields.io/badge/XGBoost-Latest-green) ![SHAP](https://img.shields.io/badge/Explainability-SHAP-red) ![Status](https://img.shields.io/badge/Research-Completed-brightgreen) </p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="Scikit-Learn">
+  <img src="https://img.shields.io/badge/XGBoost-Latest-006400?style=for-the-badge" alt="XGBoost">
+  <img src="https://img.shields.io/badge/SHAP-Explainable%20AI-FF4B4B?style=for-the-badge" alt="SHAP">
+  <img src="https://img.shields.io/badge/Status-v1.0-success?style=for-the-badge" alt="Status">
+</p>
 
 ---
 
@@ -68,7 +74,7 @@ PDF Report Generation
 
 ## Prediction Dashboard
 
-![Dashboard](docs/dasboard.png)
+![Dashboard](docs/dashboard.png)
 
 ---
 
